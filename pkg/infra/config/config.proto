@@ -1,0 +1,39 @@
+syntax = "proto3";
+package config;
+
+option go_package = "github.com/EndlessIdea/kratos-app/pkg/infra/config;config";
+
+import "google/protobuf/duration.proto";
+
+message Database {
+  string source = 1;
+  int32 max_open_conn = 2;
+  int32 max_idle_conn = 3;
+  google.protobuf.Duration max_conn_life_time = 4;
+  google.protobuf.Duration max_conn_idle_time = 5;
+}
+
+message Redis {
+  string addr = 1;
+  string password = 2;
+  google.protobuf.Duration read_timeout = 3;
+  google.protobuf.Duration write_timeout = 4;
+  google.protobuf.Duration dial_timeout = 5;
+  google.protobuf.Duration pool_timeout = 6;
+  int64 pool_size = 7;
+}
+
+message Presto {
+  string addr = 1;
+  string username = 2;
+  string password = 3;
+  int32 max_open_conn = 4;
+  int32 max_idle_conn = 5;
+}
+
+message AzureBlob {
+  string storage_account = 1;
+  string access_key = 2;
+  string storage_container = 3;
+  int32 retry = 4;
+}
