@@ -44,5 +44,6 @@ func NewRedisClient(cfg *config.Redis) (*redis.Client, error) {
 	if cfg.Password != "" {
 		redisOpts.TLSConfig = &tls.Config{InsecureSkipVerify: true}
 	}
+
 	return redis.NewClient(&redisOpts), nil
 }

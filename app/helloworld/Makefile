@@ -29,9 +29,10 @@ init:
 .PHONY: config
 # generate internal proto
 config:
-	protoc --proto_path=$(ROOT_DIR)/app/helloworld \
+	protoc --proto_path=$(ROOT_DIR) \
 	       --proto_path=$(ROOT_DIR)/third_party \
- 	       --go_out=paths=source_relative:$(ROOT_DIR)/app/helloworld/internal \
+	       --proto_path=$(ROOT_DIR)/pkg \
+ 	       --go_out=paths=source_relative:$(ROOT_DIR) \
 	       $(INTERNAL_PROTO_FILES)
 
 .PHONY: api

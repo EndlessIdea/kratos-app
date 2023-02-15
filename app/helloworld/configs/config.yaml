@@ -6,10 +6,23 @@ server:
     addr: 0.0.0.0:9000
     timeout: 1s
 data:
-  database:
-    driver: mysql
-    source: root:root@tcp(127.0.0.1:3306)/test
+  mysql:
+    source: "${MYSQL_USER:root}:${MYSQL_PASSWORD:root}@tcp(${MYSQL_HOST:127.0.0.1}:3306)/hello_world?parseTime=true&loc=UTC&charset=utf8mb4"
+    max_open_conn: 50
+    max_idle_conn: 20
+    max_conn_life_time: 1200s
+    max_conn_idle_time: 600s
+  postgres:
+    source: "host=${POSTGRES_HOST:127.0.0.1} user=${POSTGRES_USER:root} password=${POSTGRES_PASSWORD:root} dbname=hello_world port=5432 sslmode=disable"
+    max_open_conn: 50
+    max_idle_conn: 20
+    max_conn_life_time: 1200s
+    max_conn_idle_time: 600s
   redis:
-    addr: 127.0.0.1:6379
-    read_timeout: 0.2s
-    write_timeout: 0.2s
+    addr: "${REDIS_HOST:127.0.0.1}:${REDIS_PORT:6379}"
+    password: "${REDIS_PASSWORD}"
+    read_timeout: 2s
+    write_timeout: 2s
+    dial_timeout: 2s
+    pool_timeout: 300s
+    pool_size: 10

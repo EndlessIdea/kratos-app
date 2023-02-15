@@ -44,5 +44,6 @@ func NewPostgresClient(cfg *config.Database) (*gorm.DB, error) {
 	postgresDB.SetMaxIdleConns(int(cfg.GetMaxIdleConn()))
 	postgresDB.SetConnMaxLifetime(cfg.GetMaxConnLifeTime().AsDuration())
 	postgresDB.SetConnMaxIdleTime(cfg.GetMaxConnIdleTime().AsDuration())
+
 	return postgresClient, nil
 }
